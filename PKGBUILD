@@ -8,10 +8,13 @@ arch=('any')
 url='https://journals.aps.org/revtex'
 license=('custom')
 depends=('texlive-bin')
-source=('http://mirrors.ctan.org/install/macros/latex/contrib/revtex.tds.zip')
-md5sums=('0427e76dace754ed568968c5ff689909')
+source=('http://mirrors.ctan.org/install/macros/latex/contrib/revtex.tds.zip'
+        'https://www.latex-project.org/lppl/lppl-1-3c.txt')
+md5sums=('0427e76dace754ed568968c5ff689909'
+         '9f4337828d782bdea41f03dd2ad1b808')
 
 package() {
+  install -Dm644 "${srcdir}/lppl-1-3c.txt" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
   mkdir -p -- "${pkgdir}/usr/share/texmf/"
   cd -- "${pkgdir}/usr/share/texmf/"
   bsdtar -xf "${srcdir}/revtex.tds.zip"
